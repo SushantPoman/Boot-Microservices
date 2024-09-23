@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: MiniPApiGateway
+  cloud:
+    gateway:
+      routes:
+        - id: Microservice-1
+          uri: lb://WELCOMESERVICE
+          predicates:
+            - Path=/welcome
+        - id: Microservice-2
+          uri: lb://GREETSERVICE
+          predicates:
+            - Path=/greet
+
+server:
+  port: 3333
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
